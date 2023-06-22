@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module taylor_tb;
+module taylor_horner_tb;
 reg clock, reset, start;
 reg [23:0] angle_in;
 wire ready_out;
