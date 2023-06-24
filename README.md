@@ -15,4 +15,18 @@ High-precision calculations were used, based on data in the Fixed-Point represen
 
 FSMD state machine for the taylor_rtl module, without using Horner's rule
 
+![FSMD Horner](https://github.com/mijanik/TaylorCos/blob/main/images/horner_fsmd.png)
+
+FSMD state machine for the taylor_rtl module, with usage of Horner's rule
+
+Results:
+
+![Putty](https://github.com/mijanik/TaylorCos/blob/main/images/putty.png)
+
+To check the correct operation of the module, an ARM microcontroller was used, communicating with the module via the AXI bus. Using the Vivado SDK, an application was created in the C language, which, via the UART interface, allows the user to calculate the value of the cosine function for an angle in the range of 0 to 360 degrees.
+
+![Chart](https://github.com/mijanik/TaylorCos/blob/main/images/chart.png)
+
+The graph above shows a comparison of the function approximation values using modules using the classic Taylor formula and its transformation, according to Horner's rule. For angles greater than 70°, it can be seen that the module using Horner's rule inaccurately approximates the cosine function. As this angle increases, the error value also increases. The module using the classic Taylor formula works very precisely. The difference in performance may be due to a different order of operations, which resulted in numerical errors and loss of accuracy.
+
 [Short presentation video](drive.google.com/file/d/15-wdSZD2HDbZ2N2pl6DcoiQvqIsFRjsE)
