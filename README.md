@@ -1,2 +1,3 @@
-# TaylorCos
-Approximation of Cosinus function with Taylor series in Verilog
+# Approximation of the cosine function using Taylor series - FPGA
+### Miłosz Janik & Piotr Podkówka
+### AGH SDUP Project
