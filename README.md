@@ -29,4 +29,4 @@ To check the correct operation of the module, an ARM microcontroller was used, c
 
 The graph above shows a comparison of the function approximation values using modules using the classic Taylor formula and its transformation, according to Horner's rule. For angles greater than 70°, it can be seen that the module using Horner's rule inaccurately approximates the cosine function. As this angle increases, the error value also increases. The module using the classic Taylor formula works very precisely. The difference in performance may be due to a different order of operations, which resulted in numerical errors and loss of accuracy.
 
-[Short presentation video](drive.google.com/file/d/15-wdSZD2HDbZ2N2pl6DcoiQvqIsFRjsE)
+[Short presentation video](https://drive.google.com/file/d/15-wdSZD2HDbZ2N2pl6DcoiQvqIsFRjsE)
