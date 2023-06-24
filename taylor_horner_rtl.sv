@@ -15,7 +15,7 @@ output reg ready_out;
 output reg [W-1:0] cos_out ;
 
 // ~1/6!, ~1/4!, 1/2!
-reg signed [W-1:0] divider[0:2] = { 12'b000000000010, 12'b000000101010, 12'b001000000000 };
+reg signed [W-1:0] divider[0:0] = { 12'b000000101010 };
 
 // State machine
 parameter S1 = 4'h00, S2 = 4'h01, S3 = 4'h02, S4 = 4'h03, S5 = 4'h04, S6 = 4'h05, S7 = 4'h06;
@@ -47,9 +47,9 @@ begin
             state <= S3; // move to state 3
         end
         S3: begin
-            temp_22 <= (angle_2 * divider[2]) >> FXP_SHIFT; //calculating angle^2/2!
-            temp_24 <= (angle_2 * divider[1]) >> FXP_SHIFT; //angle^2/4!
-            temp_26 <= (angle_2 * divider[0]) >> FXP_SHIFT; //angle^2/6!
+            temp_22 <= angle_2 >> 1; //calculating angle^2/2!
+            temp_24 <= (angle_2 * divider[0]) >> FXP_SHIFT; //angle^2/4!
+            temp_26 <= angle_2 >> 9; //angle^2/6! ~1/512
             state <= S4; // move to state 4
         end
         S4:begin

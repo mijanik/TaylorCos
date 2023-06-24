@@ -5,7 +5,7 @@ reg clock, reset, start;
 reg [23:0] angle_in;
 wire ready_out;
 wire [23:0] cos_out;
-real real_cos;
+real real_cos, real_angle;
 parameter FXP_MUL = 1024.0;
 
 taylor_horner_rtl taylor_horner_rtl_inst(clock, reset, start, ready_out, angle_in, cos_out);
@@ -26,7 +26,7 @@ end
 // Stimuli signals
 initial
 begin
-    angle_in <= 0.5 * FXP_MUL; // Modify value in fixed-point [2:10]
+    angle_in <= 0.0; // Modify value in fixed-point [2:10]
     start <= 1'b0;
     #20 start <= 1'b1;
     #30 start <= 1'b0;
@@ -35,6 +35,12 @@ end
 always @ (posedge ready_out)
 begin
     #10 real_cos = cos_out /FXP_MUL;
-    $display("Real cos=%f", real_cos);
+    #10 real_angle = angle_in /FXP_MUL;
+    $display("angle=%f, cos=%f", real_angle, real_cos);
+    #10 angle_in <= angle_in + 0.1 * FXP_MUL; // Modify value in fixed-point [2:10]
+    #20 start <= 1'b0;
+    #20 start <= 1'b1;
+    if (angle_in > 1.4 * FXP_MUL )
+      $stop; 
 end
 endmodule
